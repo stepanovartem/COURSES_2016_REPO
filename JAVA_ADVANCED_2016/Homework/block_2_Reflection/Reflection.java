@@ -3,7 +3,8 @@
  */
 package block_2_Reflection;
 
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
+
 
 /**
  * @author artem.stepanov
@@ -17,9 +18,13 @@ public class Reflection {
 	@SuppressWarnings("rawtypes")
 	Class superclazz;
 	
+	Field[] fields;
+	int mods;
+	
 	Reflection(String className) throws Exception{
 		clazz = Class.forName(className);
 		superclazz = clazz.getSuperclass();
+		fields = clazz.getDeclaredFields();
 	}
 	
 	
@@ -30,11 +35,11 @@ public class Reflection {
 			
 		
 		
-		System.out.print(getClassModifiers() + "class " + clazz.getSimpleName() + (getSuperClass() ? " extends " + superclazz.getCanonicalName():"")+ " {");
+		System.out.println(getClassModifiers() + "class " + clazz.getSimpleName() + (getSuperClass() ? " extends " + superclazz.getCanonicalName():"")+ " {");
 		
 		
 		
-		
+		System.out.println(getFieldsModifiers());
 		
 		
 		System.out.println("}");
@@ -46,9 +51,9 @@ public class Reflection {
 	 * This method returns class modifiers (public, abstract, final)
 	 * @return String
 	 */
-	String getClassModifiers(){
+	private String getClassModifiers(){
 		
-		int mods = clazz.getModifiers(); 
+		mods = clazz.getModifiers(); 
 		if (Modifier.isPublic(mods)) { 
 		    return "public "; 
 		} 
@@ -68,11 +73,31 @@ public class Reflection {
 	 * Since we know that all classes inherited from class Object as default
 	 * @return {@link Boolean}
 	 */
-	boolean getSuperClass(){
+	private boolean getSuperClass(){
 		
-		if (superclazz.equals(Object.class)) return false;
+		if (superclazz.equals(Object.class) || superclazz.equals(null)) return false;
 		
 		return true;
+	}
+	
+	/**
+	 * This method returns all class fields with modifiers
+	 * @return String
+	 */
+	private String getFieldsModifiers(){
+		
+		String fieldsModifiers;
+		
+		fieldsModifiers = "";
+		
+		if (fields.length != 0){
+			for(int i = 0; i<fields.length; i++){
+				mods = fields[i].getModifiers();
+				fieldsModifiers = fieldsModifiers.concat("    "+(Modifier.toString(mods).equals("")?"":Modifier.toString(mods)+" ")+fields[i].getType().getSimpleName() + " "+fields[i].getName()+";\n");
+			}
+		}
+		
+		return fieldsModifiers;
 	}
 	
 }
