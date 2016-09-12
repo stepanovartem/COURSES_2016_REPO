@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author artem.stepanov
  *
  */
-public class Controller {
+public class Controller{
 
 
 
