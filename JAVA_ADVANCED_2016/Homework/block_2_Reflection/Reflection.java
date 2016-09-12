@@ -113,7 +113,11 @@ public class Reflection {
 		if (methods.length != 0){
 			for(int i = 0; i<methods.length; i++){
 				mods = methods[i].getModifiers();
-				methodsModifiers = methodsModifiers.concat("    "+(Modifier.toString(mods).equals("")?"":Modifier.toString(mods)+" ")+methods[i].getReturnType().getSimpleName()+" "+methods[i].getName()+"("+";\n");
+				methodsModifiers = methodsModifiers.concat("    "+(Modifier.toString(mods).equals("")?"":Modifier.toString(mods)+" ")+methods[i].getReturnType().getSimpleName()+" "+methods[i].getName()+"(");
+				for(int j = 0; j<methods[i].getParameters().length; j++){
+					methodsModifiers = methodsModifiers.concat(methods[i].getParameters()[j].getType().getSimpleName()+" "+methods[i].getParameters()[j].getName()+(j<methods[i].getParameters().length-1?",":""));
+				}
+				methodsModifiers = methodsModifiers.concat(");\n");
 			}
 		}
 		
