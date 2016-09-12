@@ -13,6 +13,8 @@ public class Reflection {
 	
 	@SuppressWarnings("rawtypes")
 	Class clazz;
+	
+	@SuppressWarnings("rawtypes")
 	Class superclazz;
 	
 	Reflection(String className) throws Exception{
@@ -26,19 +28,9 @@ public class Reflection {
 		System.out.println(clazz.getPackage().equals(null)?"":clazz.getPackage());
 		System.out.println();
 			
-		int mods = clazz.getModifiers(); 
-		if (Modifier.isPublic(mods)) { 
-		    System.out.print("public "); 
-		} 
-		if (Modifier.isAbstract(mods)) { 
-		    System.out.print("abstract "); 
-		} 
-		if (Modifier.isFinal(mods)) { 
-		    System.out.print("final "); 
-		} 
 		
-		System.out.print("class " + clazz.getSimpleName() + (getSuperClass() ? " extends " + superclazz.getCanonicalName():"")+ " {");
 		
+		System.out.print(getClassModifiers() + "class " + clazz.getSimpleName() + (getSuperClass() ? " extends " + superclazz.getCanonicalName():"")+ " {");
 		
 		
 		
@@ -47,6 +39,27 @@ public class Reflection {
 		
 		System.out.println("}");
 		
+	}
+	
+	
+	/**
+	 * This method returns class modifiers (public, abstract, final)
+	 * @return String
+	 */
+	String getClassModifiers(){
+		
+		int mods = clazz.getModifiers(); 
+		if (Modifier.isPublic(mods)) { 
+		    return "public "; 
+		} 
+		if (Modifier.isAbstract(mods)) { 
+			return "abstract "; 
+		} 
+		if (Modifier.isFinal(mods)) { 
+			return "final "; 
+		} 
+		
+		return null;
 	}
 	
 	
