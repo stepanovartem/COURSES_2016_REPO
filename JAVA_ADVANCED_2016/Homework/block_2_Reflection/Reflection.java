@@ -26,7 +26,7 @@ public class Reflection {
 		clazz = Class.forName(className);
 		superclazz = clazz.getSuperclass();
 		fields = clazz.getDeclaredFields();
-		methods = clazz.getMethods();
+		methods = clazz.getDeclaredMethods();
 	}
 	
 	
@@ -113,7 +113,7 @@ public class Reflection {
 		if (methods.length != 0){
 			for(int i = 0; i<methods.length; i++){
 				mods = methods[i].getModifiers();
-				methodsModifiers = methodsModifiers.concat("    "+(Modifier.toString(mods).equals("")?"":Modifier.toString(mods)+" ")+";\n");
+				methodsModifiers = methodsModifiers.concat("    "+(Modifier.toString(mods).equals("")?"":Modifier.toString(mods)+" ")+methods[i].getName()+methods[i].getParameterTypes().toString()+";\n");
 			}
 		}
 		
