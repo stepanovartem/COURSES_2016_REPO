@@ -19,12 +19,14 @@ public class Reflection {
 	Class superclazz;
 	
 	Field[] fields;
+	Method[] methods;
 	int mods;
 	
 	Reflection(String className) throws Exception{
 		clazz = Class.forName(className);
 		superclazz = clazz.getSuperclass();
 		fields = clazz.getDeclaredFields();
+		methods = clazz.getMethods();
 	}
 	
 	
@@ -39,7 +41,8 @@ public class Reflection {
 		
 		
 		
-		System.out.println(getFieldsModifiers());
+		System.out.println(getFields());
+		System.out.println(getMethods());
 		
 		
 		System.out.println("}");
@@ -84,7 +87,7 @@ public class Reflection {
 	 * This method returns all class fields with modifiers
 	 * @return String
 	 */
-	private String getFieldsModifiers(){
+	private String getFields(){
 		
 		String fieldsModifiers;
 		
@@ -98,6 +101,23 @@ public class Reflection {
 		}
 		
 		return fieldsModifiers;
+	}
+	
+	
+	private String getMethods(){
+		
+		String methodsModifiers;
+		methodsModifiers = "";
+		
+		
+		if (methods.length != 0){
+			for(int i = 0; i<methods.length; i++){
+				mods = methods[i].getModifiers();
+				methodsModifiers = methodsModifiers.concat("    "+(Modifier.toString(mods).equals("")?"":Modifier.toString(mods)+" ")+";\n");
+			}
+		}
+		
+		return methodsModifiers;
 	}
 	
 }
