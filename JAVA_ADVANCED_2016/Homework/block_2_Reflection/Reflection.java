@@ -18,6 +18,8 @@ public class Reflection {
 	@SuppressWarnings("rawtypes")
 	Class superclazz;
 	
+	@SuppressWarnings("rawtypes")
+	Constructor[] cnstrctr;
 	Field[] fields;
 	Method[] methods;
 	int mods;
@@ -25,6 +27,7 @@ public class Reflection {
 	Reflection(String className) throws Exception{
 		clazz = Class.forName(className);
 		superclazz = clazz.getSuperclass();
+		cnstrctr = clazz.getConstructors();
 		fields = clazz.getDeclaredFields();
 		methods = clazz.getDeclaredMethods();
 	}
@@ -40,9 +43,9 @@ public class Reflection {
 		System.out.println(getClassModifiers() + "class " + clazz.getSimpleName() + (getSuperClass() ? " extends " + superclazz.getCanonicalName():"")+ " {");
 		
 		
-		
-		System.out.println(getFields());
-		System.out.println(getMethods());
+		System.out.print(getConstructors());
+		System.out.print(getFields());
+		System.out.print(getMethods());
 		
 		
 		System.out.println("}");
@@ -78,7 +81,7 @@ public class Reflection {
 	 */
 	private boolean getSuperClass(){
 		
-		if (superclazz.equals(Object.class) || superclazz.equals(null)) return false;
+		if (!clazz.getName().equals(Object.class.getName()) && (superclazz.equals(Object.class) || superclazz.equals(null))) return false;
 		
 		return true;
 	}
@@ -94,6 +97,7 @@ public class Reflection {
 		fieldsModifiers = "";
 		
 		if (fields.length != 0){
+			System.out.println();
 			for(int i = 0; i<fields.length; i++){
 				mods = fields[i].getModifiers();
 				fieldsModifiers = fieldsModifiers.concat("    "+(Modifier.toString(mods).equals("")?"":Modifier.toString(mods)+" ")+fields[i].getType().getSimpleName() + " "+fields[i].getName()+";\n");
@@ -103,7 +107,10 @@ public class Reflection {
 		return fieldsModifiers;
 	}
 	
-	
+	/**
+	 * This method describes all methods in the Class
+	 * @return String
+	 */
 	private String getMethods(){
 		
 		String methodsModifiers;
@@ -111,6 +118,7 @@ public class Reflection {
 		
 		
 		if (methods.length != 0){
+			System.out.println();
 			for(int i = 0; i<methods.length; i++){
 				mods = methods[i].getModifiers();
 				methodsModifiers = methodsModifiers.concat("    "+(Modifier.toString(mods).equals("")?"":Modifier.toString(mods)+" ")+methods[i].getReturnType().getSimpleName()+" "+methods[i].getName()+"(");
@@ -122,6 +130,26 @@ public class Reflection {
 		}
 		
 		return methodsModifiers;
+	}
+	
+	private String getConstructors(){
+		
+		String classConstructors;
+		classConstructors = "";
+		
+		if (cnstrctr.length != 0){
+			System.out.println();
+			for(int i = 0; i < cnstrctr.length ; i++){
+				mods = cnstrctr[i].getModifiers();
+				classConstructors = classConstructors.concat("    "+(Modifier.toString(mods).equals("public")?"":Modifier.toString(mods)+" ")+cnstrctr[i].getDeclaringClass().getSimpleName()+"(");
+				for(int j = 0; j < cnstrctr[i].getParameters().length; j++){
+					classConstructors = classConstructors.concat(cnstrctr[i].getParameters()[j].getType().getSimpleName()+" "+cnstrctr[i].getParameters()[j].getName()+(j<cnstrctr[i].getParameters().length-1?",":""));
+				}
+				classConstructors = classConstructors.concat(");\n");
+			}
+		}
+		
+		return classConstructors;
 	}
 	
 }

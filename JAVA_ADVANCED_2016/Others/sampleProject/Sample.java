@@ -3,6 +3,8 @@
  */
 package sampleProject;
 
+import java.util.Scanner;
+
 /**
  * @author stepanov_artem
  *
@@ -14,7 +16,7 @@ public class Sample {
 	 */
 	public static void main(String[] args) {
 		
-		System.out.println("It starts!");
+		System.out.println(Scanner.class.getCanonicalName());
 
 	}
 

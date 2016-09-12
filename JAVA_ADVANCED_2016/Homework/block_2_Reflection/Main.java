@@ -15,7 +15,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws Exception {
 		
-		new Reflection("block_1.Controller").getClassDescription();
+		new Reflection("java.util.Scanner").getClassDescription();
 
 	}
 
