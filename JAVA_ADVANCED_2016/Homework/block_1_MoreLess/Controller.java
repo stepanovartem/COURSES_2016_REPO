@@ -44,7 +44,7 @@ public class Controller{
     	
     }
 
-	/** Main method in class Controller which starts the game*/
+	/** Main method in class Controller which starts the game MoreLess*/
     public void processUser(){    	
     	
         Scanner sc = new Scanner(System.in);
