@@ -26,8 +26,9 @@ public class MathFuncTest {
     @Test
     public void factorial() {
         assertTrue(math.factorial(0) == 1);
-        assertTrue(math.factorial(1) == 1);
         assertTrue(math.factorial(5) == 120);
+        assertTrue(math.factorial(8) == 40320);
+        assertFalse(math.factorial(5) == 121);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -35,9 +36,8 @@ public class MathFuncTest {
         math.factorial(-1);
     }
 
-    @Ignore
     @Test
     public void todo() {
-        assertTrue(math.plus(1, 1) == 3);
+        assertFalse(math.plus(1, 1) == 3);
     }
 }
