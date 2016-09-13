@@ -115,7 +115,7 @@ public class Controller{
 
 	/**
 	 * The method to validate input source parametrs
-	 * @param args String[]
+	 * @param args String[] 
 	 * @param MaxSrcPrmtrs  constant MAX_SRC_PRMTRS
 	 * @return  boolean
 	 * @see #MAX_SRC_PRMTRS
