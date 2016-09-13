@@ -45,10 +45,9 @@ public class Controller{
     }
 
 	/** Main method in class Controller which starts the game*/
-    public void processUser(){
+    public void processUser(){    	
     	
-    	
-        Scanner sc = new Scanner(System.in); 
+        Scanner sc = new Scanner(System.in);
         
         do{
         	gameStart(inputIntValueWithScanner(sc));
@@ -62,27 +61,16 @@ public class Controller{
 	 */
     private int inputIntValueWithScanner(Scanner sc) {
     	
-    	String number = new String();
-    	boolean lbl;
-
-
-
-		lbl = true;
 
     	
     	view.printMessage(View.PRPSL);
-    	number = sc.nextLine();
-		while(lbl){
-			if (number.trim().split(" ").length>1){
-				view.printMessage(View.WRNG_DATA + View.PRPSL);
-				number = sc.nextLine();
-			}else if (!intChecker(number)){
-    			view.printMessage(View.WRNG_DATA + View.PRPSL);
-				number = sc.nextLine();
-    		}else lbl = false;
-    	}
+    	while(!sc.hasNextInt()){
+    		view.printMessage(View.WRNG_DATA + View.PRPSL);
+    		sc.next();
+    	}    	
+
     	
-        return Integer.parseInt(number);
+        return sc.nextInt();
     }
 
 
