@@ -69,7 +69,7 @@ public class Controller{
     		view.printMessage(View.WRNG_DATA + View.PRPSL);
     		sc.next();
     		
-    	}    	
+    	}    	 
 
     	
         return sc.nextInt();
