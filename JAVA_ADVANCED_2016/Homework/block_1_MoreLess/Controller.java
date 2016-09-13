@@ -1,7 +1,7 @@
 /**
  * 
  */
-package block_1;
+package block_1_MoreLess;
 
 import java.util.Scanner;
 

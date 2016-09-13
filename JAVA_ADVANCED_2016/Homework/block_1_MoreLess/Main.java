@@ -1,7 +1,7 @@
 /**
  * 
  */
-package block_1;
+package block_1_MoreLess;
 
 /**
  * @author artem.stepanov 09.09.2016
