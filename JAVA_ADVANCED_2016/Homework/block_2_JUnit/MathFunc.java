@@ -1,4 +1,4 @@
-package block_3_JUnit;
+package block_2_JUnit;
 
 public class MathFunc {
     int calls;
