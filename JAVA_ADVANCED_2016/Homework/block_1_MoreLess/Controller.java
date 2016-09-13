@@ -6,7 +6,7 @@ package block_1_MoreLess;
 import java.util.Scanner;
 
 /**
- * @author artem.stepanov
+ * @author artem.stepanov 
  *
  */
 public class Controller{
