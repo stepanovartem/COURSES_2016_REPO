@@ -55,14 +55,6 @@ public class View {
         System.out.println(message + value);
     }
 
-    /**
-     * Method to print the message to console
-     * @param message String
-     * @param value String
-     */
-    public void printMessage(String message, String value){
-        System.out.println(message + value);
-    }
 
 	
 }

@@ -92,17 +92,17 @@ public class Controller{
     private void gameStart(int number){
 
     	if (model.tryToGuess(number)) {
-    		if (model.getCounter() != 0) view.printMessage(View.PRVS_ATTMPTS, model.getArrAttempts().toString());
+    		if (model.getCounter() != 0) view.printMessage(View.PRVS_ATTMPTS+model.getArrAttempts().toString());
 			model.setArrAttempts(number);
     		view.printMessage(View.WIN, model.getMyNumber());
     		mainLbl = false;
     	}else if (model.comparingNumbers(number)){
-    		if (model.getCounter() != 0) view.printMessage(View.PRVS_ATTMPTS, model.getArrAttempts().toString());
+    		if (model.getCounter() != 0) view.printMessage(View.PRVS_ATTMPTS+model.getArrAttempts().toString());
     		view.printMessage(View.GUESS_LESS, number);
     		model.setArrAttempts(number);
     		mainLbl = true;
     	}else {
-    		if (model.getCounter() != 0) view.printMessage(View.PRVS_ATTMPTS, model.getArrAttempts().toString());
+    		if (model.getCounter() != 0) view.printMessage(View.PRVS_ATTMPTS+model.getArrAttempts().toString());
     		view.printMessage(View.GUESS_MORE, number);
 			model.setArrAttempts(number);
     		mainLbl = true;
