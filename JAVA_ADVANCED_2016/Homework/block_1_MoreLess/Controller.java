@@ -65,8 +65,10 @@ public class Controller{
     	
     	view.printMessage(View.PRPSL);
     	while(!sc.hasNextInt()){
+    		
     		view.printMessage(View.WRNG_DATA + View.PRPSL);
     		sc.next();
+    		
     	}    	
 
     	
