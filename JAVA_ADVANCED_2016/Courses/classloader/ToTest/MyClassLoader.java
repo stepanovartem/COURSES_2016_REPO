@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.apache.commons.io.*;
 
+
 public class MyClassLoader extends ClassLoader {
 	
 	private static final String PATH = "/Users/stepanov_artem/Desktop/COURSES_2016_JAVA_ADVANCED/COURSES_2016_REPO.git/JAVA_ADVANCED_2016/target/classes/";
