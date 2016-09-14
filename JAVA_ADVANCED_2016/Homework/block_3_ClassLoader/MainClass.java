@@ -11,10 +11,12 @@ public class MainClass {
 
 	/**
 	 * @param args
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) {
+	@SuppressWarnings("unused")
+	public static void main(String[] args) throws Exception {
 
-		JarClass j = new JarClass("C:/TMP/mysql-connector-java-6.0.3.jar", null);
+		JarClass j= new JarClass("C:/TMP/hamcrest-core-1.3.jar");
 
 	}
 

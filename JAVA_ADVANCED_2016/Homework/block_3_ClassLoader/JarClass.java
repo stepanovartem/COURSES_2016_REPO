@@ -1,51 +1,43 @@
 package block_3_ClassLoader;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.Enumeration;
 import java.util.jar.*;
 
 public class JarClass {
+
+	private String nameJarFile;
 	
-	private HashMap<String, Class<?>> cache = new HashMap<String, Class<?>>();	   
-
-    private String jarFileName;
-    private String packageName;       
-
-    private final static String WARNING = "Warning : No jar file found.";
-
-
-
-    public JarClass(String jarFileName, String packageName) {    
-
-        this.jarFileName = jarFileName;        
-
-        this.packageName = packageName;
-
-       
-        cacheClasses();
+    public JarClass(String nameJarFile) throws Exception {
+    	
+    	this.nameJarFile = nameJarFile;
+    	unjarchivator();
+    	
+	}
+    
+    
+	@SuppressWarnings("resource")
+	private void unjarchivator() throws Exception{
+    	
+    	JarFile jF = new JarFile(nameJarFile,false);
+    	Enumeration<JarEntry> entries = jF.entries();
+    	JarEntry jE;
+    	Reflection rflctn = new Reflection();
+    	
+    	while(entries.hasMoreElements()){
+    		jE = entries.nextElement();
+    		if (!jE.isDirectory() && jE.getName().contains(".class")) {
+    			if (!(rflctn.processFind(normalizeClassName(jE.getName())) == null)) prinMessage(normalizeClassName(jE.getName()));
+    		}
+    	}
     }
     
-    private void cacheClasses(){
-    	
-    	try {         
-            @SuppressWarnings("resource")
-			JarFile jarFile = new JarFile(jarFileName);
-            @SuppressWarnings("rawtypes")
-			Enumeration entries = jarFile.entries();
-            
-            
-            while (entries.hasMoreElements()){
-            	JarEntry jarEntry = (JarEntry) entries.nextElement();
-            	System.out.println(jarEntry.getName());
-            }
-
-        	}
-
-        catch (IOException IOE) {
-            System.out.println(WARNING);
-        }
-    	
+    
+    private void prinMessage(String message){
+    	System.out.println(message);
     }
-	
-	
+    
+    private String normalizeClassName(String className){
+    	return className.replace('/', '.');
+    }
+
 }
