@@ -16,7 +16,7 @@ public class MainClass {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) throws Exception {
 
-		JarClass j= new JarClass("C:/TMP/hamcrest-core-1.3.jar");
+		JarClass j= new JarClass("C:/TMP/javax.mail-1.4.5.jar");
 
 	}
 
