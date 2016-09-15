@@ -13,6 +13,7 @@ public class MainClass {
 
 	public static void main(String[] args) throws Exception {
 
+		@SuppressWarnings("unused")
 		JarClass j= new JarClass("C:/TMP/junit-4.12.jar");
 
 	}

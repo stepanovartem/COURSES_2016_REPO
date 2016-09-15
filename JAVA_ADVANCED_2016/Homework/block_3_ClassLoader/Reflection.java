@@ -5,7 +5,6 @@ package block_3_ClassLoader;
 
 import java.io.File;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -14,7 +13,7 @@ import java.net.URLClassLoader;
  * @author artem.stepanov
  *
  */
-public class Reflection extends ClassLoader{
+public class Reflection {
 	
 	@SuppressWarnings("rawtypes")
 	private Class clazz;

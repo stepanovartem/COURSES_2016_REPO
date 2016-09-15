@@ -1,8 +1,5 @@
 package block_3_ClassLoader;
 
-import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Enumeration;
 import java.util.jar.*;
 
