@@ -13,10 +13,8 @@ public class MainClass {
 
 	public static void main(String[] args) throws Exception {
 
-		JarClass j= new JarClass("C:/TMP/javax.mail-1.4.5.jar");
-		
+		JarClass j= new JarClass("C:/TMP/junit-4.12.jar");
 
-		
 	}
 
 }

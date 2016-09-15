@@ -3,7 +3,11 @@
  */
 package block_3_ClassLoader;
 
+import java.io.File;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 
 /**
@@ -15,12 +19,20 @@ public class Reflection extends ClassLoader{
 	@SuppressWarnings("rawtypes")
 	private Class clazz;
 	private Method[] method;
+	private File file;
+	private URL url;
+	private URL[] urls = {url};
+	ClassLoader mainCL;
 	
+	public Reflection(String nameJarFile) throws Exception {
+		file = new File(nameJarFile);
+    	url = file.toURI().toURL();
+    	mainCL = new URLClassLoader(urls);
+	}
 	
 	@SuppressWarnings("rawtypes")
 	public Class processFind(String className) throws Exception{
-		System.out.println(className.replaceAll(".class",""));
-		clazz = Class.forName(className.replaceAll(".class",""));
+		clazz = mainCL.loadClass(className.replaceAll(".class",""));
 		method = clazz.getDeclaredMethods();
 		if (findMainMethod()) return clazz;
 		return null;

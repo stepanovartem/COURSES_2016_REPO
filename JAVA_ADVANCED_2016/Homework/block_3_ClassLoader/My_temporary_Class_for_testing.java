@@ -11,7 +11,7 @@ import java.net.URLClassLoader;
  * @author artem.stepanov
  *
  */
-public class Test {
+public class My_temporary_Class_for_testing {
 
 	/**
 	 * @param args

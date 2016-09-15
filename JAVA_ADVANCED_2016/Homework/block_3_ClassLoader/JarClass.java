@@ -10,10 +10,7 @@ public class JarClass {
 
 	private String nameJarFile;
 	
-	private File file;
-	private URL url;
-	private URL[] urls = {url};
-	ClassLoader mainCL;
+
 	
 
 	
@@ -29,16 +26,11 @@ public class JarClass {
 	@SuppressWarnings("resource")
 	private void unjarchivator() throws Exception{
     	
-		
-		file = new File("C:/TMP/javax.mail-1.4.5.jar");
-    	url = file.toURI().toURL();
-    	mainCL = new URLClassLoader(urls);
-		
-    	JarFile jF = new JarFile(file);
+				
+    	JarFile jF = new JarFile(nameJarFile);
     	Enumeration<JarEntry> entries = jF.entries();
     	JarEntry jE;
-    	Reflection rflctn = new Reflection();
-    	
+    	Reflection rflctn = new Reflection(nameJarFile);
     	while(entries.hasMoreElements()){
     		jE = entries.nextElement();
     		if (!jE.isDirectory() && jE.getName().contains(".class")) {
