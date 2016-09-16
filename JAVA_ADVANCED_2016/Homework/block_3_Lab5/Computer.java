@@ -61,6 +61,12 @@ public class Computer {
 	public String toString() {
 		return "name=" + name + ", freq=" + freq + ", video=" + video + ", ram=" + ram + ", hdd=" + hdd;
 	}
+	
+	@My_Annot
+	public void makeItFaster(){
+		setFreq(getFreq()+500);
+		setRam(getRam()+256);
+	}
 
 	
 }
