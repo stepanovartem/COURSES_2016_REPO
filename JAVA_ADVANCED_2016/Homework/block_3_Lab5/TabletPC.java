@@ -7,7 +7,7 @@ package block_3_Lab5;
  * @author artem.stepanov
  *
  */
-public class TabletPC extends Computer {
+public class TabletPC extends Computer implements My_interface{
 	
 	private double display;
 	private String os;

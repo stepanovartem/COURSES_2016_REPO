@@ -3,6 +3,7 @@
  */
 package block_3_Lab5;
 
+
 /**
  * @author artem.stepanov
  *
@@ -62,6 +63,7 @@ public class Computer {
 		return "name=" + name + ", freq=" + freq + ", video=" + video + ", ram=" + ram + ", hdd=" + hdd;
 	}
 	
+
 	@My_Annot
 	public void makeItFaster(){
 		setFreq(getFreq()+500);

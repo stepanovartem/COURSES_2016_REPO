@@ -3,7 +3,7 @@
  */
 package block_3_Lab5;
 
-import java.lang.annotation.Annotation;
+
 import java.lang.reflect.Method;
 
 /**
@@ -14,27 +14,32 @@ public class MainClass {
 
 	/**
 	 * @param args
-	 * @throws SecurityException 
-	 * @throws NoSuchMethodException 
-	 */
-	public static void main(String[] args) throws NoSuchMethodException, SecurityException {
 
-		Computer pc = new Computer();
+	 * @throws Exception 
+
+	 */
+	public static void main(String[] args) throws Exception {
+
 		TabletPC tPC = new TabletPC();
 		
+		@SuppressWarnings("rawtypes")
 		Class clazz = tPC.getClass();
 		
-		Method[] method = clazz.getDeclaredMethods();
+		Method[] method = clazz.getMethods();
 		
-		System.out.println(clazz.getMethod("toString").getAnnotation(Override.class));
-		
+		System.out.println(tPC.toString());
 		for(Method m : method){
-			Annotation[] ann = m.getDeclaredAnnotations();
-			for(Annotation a : ann){
-				System.out.println(a.toString());
-			}
+			My_Annot annot = m.getAnnotation(My_Annot.class);
+			if (annot != null) m.invoke(tPC);
 		}
+		System.out.println(tPC.toString());
 
+
+		Class[] interf = clazz.getInterfaces();
+		
+		for(Class i: interf){
+			System.out.println(i.getCanonicalName());
+		}
 	}
 
 }
