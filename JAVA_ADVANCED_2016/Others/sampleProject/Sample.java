@@ -3,7 +3,6 @@
  */
 package sampleProject;
 
-import java.util.Scanner;
 
 /**
  * @author stepanov_artem
@@ -11,13 +10,15 @@ import java.util.Scanner;
  */
 public class Sample {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		
-		System.out.println(Scanner.class.getCanonicalName());
-
+	int a = 5;
+	int b = 5;
+	
+	public int sum(int a, int b){
+		return a+b;
+	}
+	
+	public double div(int a, int b){
+		return a/b;
 	}
 
 }
